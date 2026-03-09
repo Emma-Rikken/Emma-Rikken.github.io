@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emma E. Rikken</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #1a1a1a;
+      --ink-light: #555;
+      --ink-faint: #999;
+      --rule:      #d8d0c4;
+      --bg:        #f7f4ef;
+      --accent:    #7a3e2e;
+      --accent-lt: #b5684f;
+      --serif:     'Cormorant Garamond', Georgia, serif;
+      --mono:      'DM Mono', monospace;
+      --sans:      'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      padding: 0.9rem 0;
+    }
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .name {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul a {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 0 3.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: start;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 1.4rem;
+    }
+    .hero-bio {
+      font-size: 0.95rem;
+      color: var(--ink-light);
+      max-width: 520px;
+      line-height: 1.8;
+    }
+    .hero-bio a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-lt);
+    }
+    .hero-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.6rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.1rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent-lt); }
+    .btn-outline {
+      border: 1px solid var(--rule);
+      color: var(--ink-light);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-tag {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-top: 0.5rem;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      border: 1px solid var(--rule);
+      padding: 0.3rem 0.7rem;
+      white-space: nowrap;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.8rem;
+    }
+
+    /* ── RESEARCH ── */
+    .paper {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .paper:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .paper-status {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-lt);
+      margin-bottom: 0.4rem;
+    }
+    .paper h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 0.3rem;
+    }
+    .paper h3 a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .paper h3 a:hover { border-color: var(--accent); }
+    .paper-authors {
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+      margin-bottom: 0.7rem;
+      font-style: italic;
+    }
+    .paper-desc {
+      font-size: 0.88rem;
+      color: var(--ink-light);
+      line-height: 1.75;
+    }
+    .paper-findings {
+      margin-top: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .finding {
+      font-size: 0.84rem;
+      color: var(--ink-light);
+      padding-left: 1rem;
+      border-left: 2px solid var(--rule);
+      line-height: 1.6;
+    }
+    .finding strong { color: var(--accent); font-weight: 500; }
+
+    /* ── CV TABLE ── */
+    .cv-block { margin-bottom: 1.8rem; }
+    .cv-block h3 {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .cv-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+    .cv-row:last-child { border-bottom: none; }
+    .cv-main { font-size: 0.88rem; }
+    .cv-main strong { font-weight: 500; }
+    .cv-main span { color: var(--ink-light); }
+    .cv-sub {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      font-style: italic;
+      margin-top: 0.1rem;
+    }
+    .cv-year {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--ink-faint);
+      white-space: nowrap;
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .contact-item h4 {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 0.4rem;
+    }
+    .contact-item p, .contact-item a {
+      font-size: 0.88rem;
+      color: var(--ink-light);
+      text-decoration: none;
+    }
+    .contact-item a:hover { color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+    }
+    footer p {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-faint);
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in:nth-child(1) { animation-delay: 0.05s; }
+    .fade-in:nth-child(2) { animation-delay: 0.15s; }
+    .fade-in:nth-child(3) { animation-delay: 0.25s; }
+    .fade-in:nth-child(4) { animation-delay: 0.35s; }
+
+    @media (max-width: 600px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-tag { flex-direction: row; flex-wrap: wrap; }
+      .contact-grid { grid-template-columns: 1fr; }
+      nav ul { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a class="name" href="#">Emma E. Rikken</a>
+    <ul>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#cv">CV</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <p class="hero-sub fade-in">PhD Candidate &middot; Development Economics</p>
+        <h1 class="fade-in">Emma E.<br><em>Rikken</em></h1>
+        <p class="hero-bio fade-in">
+          I study the causes and mitigation of intergroup violence in pastoral East Africa,
+          combining 40 seasons of household panel data with a large-scale cluster-RCT across
+          246 communities. My research spans climate-conflict mechanisms, index insurance,
+          and behavioral media interventions.<br><br>
+          PhD candidate at <a href="https://www.wur.nl">Wageningen University &amp; Research</a>.
+          Visiting researcher hosted by Prof. Edward Miguel at the
+          <a href="https://cega.berkeley.edu">Center for Effective Global Action</a>,
+          UC Berkeley, Spring 2026. Member of the World Bank DRIVE evaluation team.
+        </p>
+        <div class="hero-links fade-in">
+          <a href="HFG_CV_Rikken.pdf" class="btn btn-primary">Download CV</a>
+          <a href="https://hdl.handle.net/10568/175107" class="btn btn-outline" target="_blank">Working Paper</a>
+          <a href="#contact" class="btn btn-outline">Contact</a>
+        </div>
+      </div>
+      <div class="hero-tag fade-in">
+        <span class="tag">Conflict Economics</span>
+        <span class="tag">Climate Adaptation</span>
+        <span class="tag">Insurance</span>
+        <span class="tag">East Africa</span>
+        <span class="tag">RCT Design</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="container">
+    <p class="section-label">Research</p>
+
+    <div class="paper">
+      <p class="paper-status">Working Paper &mdash; Under Review</p>
+      <h3><a href="https://hdl.handle.net/10568/175107" target="_blank">Weathering Conflict: Resource Shocks, Insurance, and Pastoral Raiding</a></h3>
+      <p class="paper-authors">E.E. Rikken, N.D. Jensen, J.D. Lopez-Rivas &amp; K. Morsink</p>
+      <p class="paper-desc">40-season household panel of 1,586 households across Kenya and Ethiopia, matched to NASA MODIS satellite pasture data. Identifies two distinct causal pathways from climate shocks to livestock raiding and evaluates the conflict effects of Index-Based Livestock Insurance (IBLI), now scaled through the World Bank&rsquo;s $365M DRIVE program.</p>
+      <div class="paper-findings">
+        <p class="finding">Scarcity pathway: bad pasture forces risky migration, accounting for <strong>73%</strong> of concurrent conflict exposure.</p>
+        <p class="finding">Abundance pathway: good rains increase dry-season raiding by <strong>86%</strong> through livestock value appreciation.</p>
+        <p class="finding">Insurance reduces scarcity-driven raiding by <strong>57%</strong> when payouts trigger &mdash; but increases victimization risk by <strong>35%</strong> during abundant seasons, as productive investments create visible wealth at the moment defensive capacity is lowest.</p>
+      </div>
+    </div>
+
+    <div class="paper">
+      <p class="paper-status">In Progress</p>
+      <h3>Conflict in the Drylands: Descriptive Evidence from Pastoral East Africa</h3>
+      <p class="paper-authors">E.E. Rikken</p>
+      <p class="paper-desc">Uses the DRIVE panel dataset &mdash; 7,807 respondents across 4,690 households in Kenya and Ethiopia &mdash; to document the prevalence, seasonality, and correlates of livestock raiding. Tests the dominant economic theories of conflict (rapacity, opportunity cost, grievance) against household-level evidence, and compares findings against aggregate databases (ACLED, UCDP) to quantify structural undercounting of pastoral violence.</p>
+    </div>
+
+    <div class="paper">
+      <p class="paper-status">Data Collection Complete &mdash; Analysis Ongoing</p>
+      <h3>Edutainment to Mitigate Inter-Group Violence</h3>
+      <p class="paper-authors">E.E. Rikken et al.</p>
+      <p class="paper-desc">Cluster-RCT across 246 communities in six Kenyan counties (130 treatment, 116 control), testing a 14-minute animated film and structured deliberation protocol cross-randomized with index insurance. The intervention promotes skills-based employment during low-demand pastoral seasons, models grazing and restitution agreements, and amplifies women&rsquo;s voices on raiding&rsquo;s human costs.</p>
+      <div class="paper-findings">
+        <p class="finding">Saturation design &mdash; <strong>30% vs. 70%</strong> treated sublocations within matched clusters &mdash; identifies general equilibrium and spillover effects beyond direct exposure.</p>
+        <p class="finding">Baseline December 2024 &middot; Intervention July&ndash;August 2025 &middot; Endline December 2025. Supported by IPA, NWO, and World Bank grants.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv">
+  <div class="container">
+    <p class="section-label">Selected CV</p>
+
+    <div class="cv-block">
+      <h3>Education</h3>
+      <div class="cv-row">
+        <div>
+          <div class="cv-main"><strong>PhD Development Economics</strong> <span>&mdash; Wageningen University &amp; Research</span></div>
+          <div class="cv-sub">Visiting Researcher, UC Berkeley (hosted by Prof. Edward Miguel, CEGA) &middot; 2026</div>
+        </div>
+        <div class="cv-year">2022&ndash;2027</div>
+      </div>
+      <div class="cv-row">
+        <div>
+          <div class="cv-main"><strong>MSc Economics</strong> <span>&mdash; University of Amsterdam</span></div>
+          <div class="cv-sub">Distinction &middot; Specialisation: Behavioural Economics &amp; Game Theory</div>
+        </div>
+        <div class="cv-year">2021&ndash;2022</div>
+      </div>
+      <div class="cv-row">
+        <div>
+          <div class="cv-main"><strong>BSc Liberal Arts &amp; Sciences</strong> <span>&mdash; Leiden University College</span></div>
+          <div class="cv-sub">Cum Laude &middot; Exchange: Yale-NUS College, Singapore (2018)</div>
+        </div>
+        <div class="cv-year">2016&ndash;2019</div>
+      </div>
+    </div>
+
+    <div class="cv-block">
+      <h3>Selected Grants &amp; Funding</h3>
+      <div class="cv-row">
+        <div class="cv-main"><strong>Co-PI</strong> <span>&mdash; IPA Full Research Grant, Conflict Incentives through Insurance &amp; Apprenticeships</span></div>
+        <div class="cv-year">$250k</div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-main"><strong>Co-PI</strong> <span>&mdash; IPA Full Research Grant, Insurance RCT</span></div>
+        <div class="cv-year">$250k</div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-main"><strong>Consortium Member</strong> <span>&mdash; NWO <em>From Climate Change to Conflict: Mitigation through Insurance?</em></span></div>
+        <div class="cv-year">EUR 2M</div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-main"><strong>Consortium Member</strong> <span>&mdash; World Bank DRIVE Impact Analysis Team</span></div>
+        <div class="cv-year">USD 360M</div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-main"><strong>One Planet Fellowship</strong> <span>&mdash; Field Research Grant, Benin</span></div>
+        <div class="cv-year">EUR 6k</div>
+      </div>
+    </div>
+
+    <div class="cv-block">
+      <h3>Selected Presentations</h3>
+      <div class="cv-row">
+        <div>
+          <div class="cv-main"><strong>Policy Presentation</strong> <span>&mdash; Governments of Kenya &amp; Ethiopia and World Bank</span></div>
+          <div class="cv-sub">On the potential and pitfalls of insurance in mitigating climate-induced conflict</div>
+        </div>
+        <div class="cv-year">2025</div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-main"><strong>CEAR-MRIC</strong> <span>&mdash; Behavioral Insurance Workshop</span></div>
+        <div class="cv-year">2025</div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-main"><strong>Oxford CSAE</strong> <span>&mdash; Annual Conference</span></div>
+        <div class="cv-year">2025</div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-main"><strong>Chief Organizer</strong> <span>&mdash; Dutch Development Economics PhD Conference</span></div>
+        <div class="cv-year">2024</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 1rem;">
+      <a href="HFG_CV_Rikken.pdf" class="btn btn-outline">Full CV (PDF)</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Contact</p>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <h4>Email</h4>
+        <a href="mailto:emma.rikken@wur.nl">emma.rikken@wur.nl</a>
+      </div>
+      <div class="contact-item">
+        <h4>Affiliation</h4>
+        <p>Development Economics Group<br>Wageningen University &amp; Research</p>
+      </div>
+      <div class="contact-item">
+        <h4>Currently</h4>
+        <p>Visiting Researcher, UC Berkeley<br>Spring 2026</p>
+      </div>
+      <div class="contact-item">
+        <h4>Links</h4>
+        <a href="https://www.linkedin.com/in/emma-rikken-9b6948136/" target="_blank">LinkedIn</a><br>
+        <a href="https://hdl.handle.net/10568/175107" target="_blank">Working Paper</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Emma E. Rikken &mdash; Updated March 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
